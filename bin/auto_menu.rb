@@ -12,7 +12,7 @@ class AutoMenu
   end
 
   def ask(hash_menu = @hash_menu)
-    return 'exit' if hash_menu.empty?
+    return 'exit' if hash_menu.empty? || exit?
 
     clear_screen
     print_app_name
@@ -55,6 +55,8 @@ class AutoMenu
 
   def print_menu(hash_menu)
     hash_menu.each_with_index do |option, index|
+      next unless option.key?(:key) && option.key?(:value)
+
       puts "#{index + 1}) #{option[:key]}"
     end
 
@@ -86,6 +88,9 @@ class AutoMenu
   end
 
   def valid_option?(option, hash_menu)
-    option.between?(-1, hash_menu.length)
+    return true if option == -1 || option == hash_menu.length
+    return false unless hash_menu[option]&.key?(:value) && hash_menu[option]&.key?(:key)
+
+    option.between?(0, hash_menu.length - 1)
   end
 end
