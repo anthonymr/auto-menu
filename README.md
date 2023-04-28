@@ -37,7 +37,7 @@ AutoMenu is a CLI recursive menu generator built with Ruby.
       ] }
     ] },
     { key: 'Option 2' }, # This option will be ignored
-    { key: 'Option 3', value: 'option_3' },
+    { value: 'option_3' }, # This option will be ignored
     { key: 'Option 4', value: 'option_4' },
     { key: 'Option 5', value: 'option_5' },
     { key: 'Option 6', value: 'option_6' },
