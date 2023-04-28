@@ -6,8 +6,11 @@ AutoMenu is a CLI recursive menu generator built with Ruby.
 
 ## Main features
   1. Print the menu and wait for the user to select an option:
-  2. Add recursive multi-level sub-menus and navigate between menus:
+  <br>![1](https://user-images.githubusercontent.com/24418924/235226334-c8013cb7-6bb8-4dc0-bb11-def9b2a3af8f.PNG)
+  2. Add recursive multi-level sub-menus and navigate between them:
+  <br>![2](https://user-images.githubusercontent.com/24418924/235226363-3dca5a69-4cc0-4b58-9d0f-fdbcce6ea9e8.PNG)
   3. Get user selected option:
+  <br>![3](https://user-images.githubusercontent.com/24418924/235226385-9a9af2a5-c5d7-4505-8114-96556e667213.PNG)
 
 ## Usage
   1. Include `auto_menu.rb` file
