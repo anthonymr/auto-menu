@@ -1,7 +1,7 @@
 class AutoMenu
   def initialize(hash_menu, config = {})
     @hash_menu = hash_menu
-    @selected_otion = 0
+    @selected_option = 0
     @back_menues = []
 
     @clear_screen = config.key?(:clear_screen) ? config[:clear_screen] : true
@@ -12,14 +12,12 @@ class AutoMenu
   end
 
   def ask(hash_menu = @hash_menu)
-    return 'exit' if hash_menu.empty? || exit?
-
     clear_screen
     print_app_name
     print_title(hash_menu)
     print_menu(hash_menu)
 
-    @selected_otion = gets.chomp.to_i - 1
+    @selected_option = gets.chomp.to_i - 1
 
     evaluate_option(hash_menu)
   end
@@ -27,29 +25,30 @@ class AutoMenu
   def pause(message = 'Press enter to continue...')
     puts message
     gets
+    clear_screen
   end
 
   def exit?
-    @selected_otion == -1
+    @selected_option == -1
   end
 
   private
 
   def evaluate_option(hash_menu)
-    if !valid_option?(@selected_otion, hash_menu)
-      pause('Invalid option, press enter to continue...')
-      ask(hash_menu)
-    elsif @selected_otion == hash_menu.length
-      ask(@back_menues.pop)
-    elsif hash_menu[@selected_otion][:value].instance_of?(Array)
-      @back_menues << hash_menu
-      ask(hash_menu[@selected_otion][:value])
-    elsif @selected_otion == -1
+    if hash_menu.empty? || exit?
       clear_screen
       'exit'
-    else
+    elsif !valid_option?(@selected_option, hash_menu)
+      pause('Invalid option, press enter to continue...')
+      ask(hash_menu)
+    elsif @selected_option == hash_menu.length
+      ask(@back_menues.pop)
+    elsif hash_menu[@selected_option][:value].instance_of?(Array)
+      @back_menues << hash_menu
+      ask(hash_menu[@selected_option][:value])
+    elsif @selected_option > -1
       clear_screen
-      hash_menu[@selected_otion][:value]
+      hash_menu[@selected_option][:value]
     end
   end
 
